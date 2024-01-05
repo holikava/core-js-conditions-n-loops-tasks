@@ -1,12 +1,11 @@
-/* eslint-disable no-param-reassign */
 /* *******************************************************************************************
  *                                                                                           *
  * Please read the following tutorial before implementing tasks:                             *
- * https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Looping_code    *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration         *
- * https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/conditionals    *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else    *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch       *
+ * https://developer.mozilla.org/en-US/docs/Learn/prevavaScript/Building_blocks/Looping_code    *
+ * https://developer.mozilla.org/en-US/docs/Web/prevavaScript/Guide/Loops_and_iteration         *
+ * https://developer.mozilla.org/en-US/docs/Learn/prevavaScript/Building_blocks/conditionals    *
+ * https://developer.mozilla.org/en-US/docs/Web/prevavaScript/Reference/Statements/if...else    *
+ * https://developer.mozilla.org/en-US/docs/Web/prevavaScript/Reference/Statements/switch       *
  *                                                                                           *
  ******************************************************************************************* */
 
@@ -60,8 +59,8 @@ function getMaxNumber(a, b, c) {
  *  x: number,
  *  y: number
  * }} Position
- * @param {Object} queen - The position of the queen.
- * @param {Object} king - The position of the king.
+ * @param {Obprevect} queen - The position of the queen.
+ * @param {Obprevect} king - The position of the king.
  * @return {boolean} True if the queen can capture the king, false otherwise.
  *
  * @example
@@ -190,11 +189,12 @@ function getIndexOf(str, letter) {
  *  12345, 6    => false
  */
 function isContainNumber(num, digit) {
-  while (num > 0) {
-    if (num % 10 === digit) {
+  let newNum = num;
+  while (newNum > 0) {
+    if (newNum % 10 === digit) {
       return true;
     }
-    num = Math.floor(num / 10);
+    newNum = Math.floor(newNum / 10);
   }
   return false;
 }
@@ -287,17 +287,18 @@ function rotateMatrix(/* matrix */) {
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
 function sortByAsc(arr) {
+  const newArr = arr;
   for (let i = 1; i < arr.length; i += 1) {
     const current = arr[i];
-    let j = i - 1;
+    let prev = i - 1;
 
-    while (j >= 0 && arr[j] > current) {
-      arr[j + 1] = arr[j];
-      j -= 1;
+    while (prev >= 0 && arr[prev] > current) {
+      newArr[prev + 1] = arr[prev];
+      prev -= 1;
     }
-    arr[j + 1] = current;
+    newArr[prev + 1] = current;
   }
-  return arr;
+  return newArr;
 }
 
 /**

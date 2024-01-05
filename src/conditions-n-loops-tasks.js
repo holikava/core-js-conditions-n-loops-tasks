@@ -91,8 +91,20 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a === 0 || b === 0 || c === 0) {
+    return false;
+  }
+  if (a === b && a + b > c) {
+    return true;
+  }
+  if (b === c && b + c > a) {
+    return true;
+  }
+  if (c === a && c + a > b) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -249,8 +261,52 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+
+function getSpiralMatrix(size) {
+  const arr = [];
+  for (let i = 0; i < size; i += 1) {
+    const rows = [];
+    for (let j = 0; j < size; j += 1) {
+      rows[rows.length] = j;
+    }
+    arr[i] = rows;
+  }
+
+  let count = 1;
+  let left = 0;
+  let right = arr.length;
+  let top = 0;
+  let bottom = arr[0].length;
+  while (left < right && top < bottom) {
+    for (let i = top; i < bottom; i += 1) {
+      arr[left][i] = count;
+      count += 1;
+    }
+    left += 1;
+
+    for (let i = left; i < right; i += 1) {
+      arr[i][bottom - 1] = count;
+      count += 1;
+    }
+    bottom -= 1;
+
+    if (left < right) {
+      for (let i = bottom - 1; i >= top; i -= 1) {
+        arr[right - 1][i] = count;
+        count += 1;
+      }
+      right -= 1;
+    }
+
+    if (top < bottom) {
+      for (let i = right - 1; i >= left; i -= 1) {
+        arr[i][top] = count;
+        count += 1;
+      }
+      top += 1;
+    }
+  }
+  return arr;
 }
 
 /**
@@ -350,7 +406,7 @@ function shuffleChar(/* str, iterations */) {
  * 123440   => 124034
  * 1203450  => 1203504
  * 90822    => 92028
- * 1`   => 322113
+ * 321321   => 322113
  *
  * @param {number} number The source number
  * @returns {number} The nearest larger number, or original number if none exists.

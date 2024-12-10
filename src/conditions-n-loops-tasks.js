@@ -482,8 +482,33 @@ function sortByAsc(arr) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let newStr = str;
+  let round = iterations;
+  let counter = 0;
+
+  for (let i = 0; i < round; i += 1) {
+    let start = '';
+    let end = '';
+
+    for (let j = 0; j < str.length; j += 1) {
+      if (j % 2 === 0) {
+        start += newStr[j];
+      } else {
+        end += newStr[j];
+      }
+    }
+
+    newStr = start + end;
+    counter += 1;
+
+    if (newStr === str) {
+      round = counter + (round % counter);
+      counter = 0;
+    }
+  }
+
+  return newStr;
 }
 /**
  * Returns the nearest largest integer consisting of the digits of the given positive integer.
